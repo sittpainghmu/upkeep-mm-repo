@@ -679,16 +679,22 @@ function ClientNewRequestScreen({ onDone }: { onDone: () => void }) {
 
 /* ---------------- Settings ---------------- */
 function SettingsScreen({ role, onSignOut, onSwitchRole }: { role: string; onSignOut: () => void; onSwitchRole: () => void }) {
+  const profile =
+    role === "Admin"
+      ? { name: "U Thiha Zaw", initials: "TZ", email: "thiha.zaw@upkeepmm.com" }
+      : role === "Technician"
+        ? { name: "Ko Aung Kyaw Zin", initials: "AK", email: "aung.kyawzin@upkeepmm.com" }
+        : { name: "Ma Aye Thida", initials: "AT", email: "aye.thida@upkeepmm.com" };
   return (
     <div>
       <TopBar title="Settings" />
       <div className="space-y-3 px-4 pb-6">
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
           <div className="flex items-center gap-3">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-bold" style={{ background: C.primaryFixed, color: C.onPrimaryFixed }}>DC</div>
+            <div className="flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-bold" style={{ background: C.primaryFixed, color: C.onPrimaryFixed }}>{profile.initials}</div>
             <div className="flex-1">
-              <div className="text-[16px] font-semibold" style={{ color: C.onSurface }}>Demo Carter</div>
-              <div className="text-[12px]" style={{ color: C.onSurfaceVar }}>demo@upkeepmm.com</div>
+              <div className="text-[16px] font-semibold" style={{ color: C.onSurface }}>{profile.name}</div>
+              <div className="text-[12px]" style={{ color: C.onSurfaceVar }}>{profile.email}</div>
               <div className="mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ background: C.primaryFixed, color: C.onPrimaryFixed }}>{role}</div>
             </div>
           </div>

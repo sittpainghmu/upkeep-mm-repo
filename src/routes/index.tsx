@@ -70,17 +70,24 @@ type Job = {
 };
 
 const JOBS: Job[] = [
-  { id: "1", order: "ORD-1042", title: "AC not cooling in Conference Room B", location: "HQ Tower", floor: "Floor 4", status: "in_progress", priority: "urgent", category: ["HVAC", "Not Cooling"], asset: "AHU-04B", vendor: "CoolAir Co.", reporter: "Sarah Chen", reporterType: "Client", description: "Conference room AC stopped cooling around 9am, room is now ~28°C.", reportedAt: "Today 09:14" },
-  { id: "2", order: "ORD-1041", title: "Leaking pipe under pantry sink", location: "HQ Tower", floor: "Floor 2", status: "acknowledged", priority: "normal", category: ["Plumbing", "Pipe Leak"], reporter: "Daniel Park", reporterType: "Client", description: "Slow drip from the U-bend, bucket placed underneath.", reportedAt: "Today 08:02" },
-  { id: "3", order: "ORD-1040", title: "Tripped breaker on East wing", location: "Annex B", floor: "Floor 1", status: "open", priority: "urgent", category: ["Electrical", "Tripped Breaker"], reporter: "Reception", reporterType: "Walk-in", description: "Half of the East wing lost power at 7:45am.", reportedAt: "Today 07:48" },
-  { id: "4", order: "ORD-1039", title: "Ceiling tile damage near elevator", location: "HQ Tower", floor: "Floor 6", status: "completed", priority: "normal", category: ["Civil", "Ceiling Damage"], reporter: "Maya Singh", reporterType: "Client", description: "Two tiles sagging, possible water damage from above.", reportedAt: "Yesterday 16:20" },
-  { id: "5", order: "ORD-1038", title: "Spillage in lobby café area", location: "HQ Tower", floor: "Ground", status: "verified", priority: "normal", category: ["Janitorial", "Spillage"], reporter: "Cafe Staff", reporterType: "Walk-in", description: "Coffee spill near the entrance, ~1m wide.", reportedAt: "Yesterday 11:05" },
+  { id: "1", order: "ORD-1042", title: "AC not cooling in Meeting Room B", location: "Sakura Tower", floor: "Level 12, Meeting Room B · Kyauktada", status: "in_progress", priority: "urgent", category: ["HVAC", "Not Cooling"], asset: "AHU-04B", vendor: "CoolAir Myanmar", reporter: "Ma Aye Thida", reporterType: "Client", description: "Meeting room AC stopped cooling around 9am, room is now ~32°C.", reportedAt: "Today 09:14" },
+  { id: "2", order: "ORD-1041", title: "Leaking pipe under pantry sink", location: "FMI Centre", floor: "Level 8, Pantry Area · Bahan", status: "acknowledged", priority: "normal", category: ["Plumbing", "Pipe Leak"], reporter: "Daw Khin Myo Aye", reporterType: "Client", description: "Slow drip from the U-bend, bucket placed underneath.", reportedAt: "Today 08:02" },
+  { id: "3", order: "ORD-1040", title: "Tripped breaker in server room", location: "Sule Square", floor: "Level 5, Server Room · Kyauktada", status: "open", priority: "urgent", category: ["Electrical", "Tripped Breaker"], reporter: "Reception", reporterType: "Walk-in", description: "Server room lost power at 7:45am, racks on UPS.", reportedAt: "Today 07:48" },
+  { id: "4", order: "ORD-1039", title: "Ceiling tile damage near reception", location: "Taw Win Centre", floor: "Level 6, Reception · Bahan", status: "completed", priority: "normal", category: ["Civil", "Ceiling Damage"], reporter: "Ma Thant Sin", reporterType: "Client", description: "Two tiles sagging, possible water damage from above.", reportedAt: "Yesterday 16:20" },
+  { id: "5", order: "ORD-1038", title: "Spillage on open floor area", location: "Times City", floor: "Level 2, Open Floor · Kamaryut", status: "verified", priority: "normal", category: ["Janitorial", "Spillage"], reporter: "Pantry Staff", reporterType: "Walk-in", description: "Tea spill near the entrance, ~1m wide.", reportedAt: "Yesterday 11:05" },
 ];
 
-const TECHNICIANS = ["Alex Rivera", "Priya Nair", "Marcus Lee", "Jana Kowalski"];
-const VENDORS = ["CoolAir Co.", "FlowFix Plumbing", "Voltline Electric", "BuildRight Civil"];
-const LOCATIONS = ["HQ Tower — Floor 1", "HQ Tower — Floor 2", "HQ Tower — Floor 4", "Annex B — Floor 1", "Warehouse"];
-const CLIENTS = ["Sarah Chen", "Daniel Park", "Maya Singh", "Tom Yoshida"];
+const TECHNICIANS = ["Ko Aung Kyaw Zin", "Ko Pyae Sone", "Ko Zaw Lin Htet"];
+const VENDORS = ["CoolAir Myanmar", "FlowFix Plumbing Yangon", "Voltline Electric MM", "BuildRight Civil Yangon"];
+const LOCATIONS = [
+  "Sakura Tower — Level 12, Meeting Room B (Kyauktada)",
+  "FMI Centre — Level 8, Pantry Area (Bahan)",
+  "Junction City — Level 3, Car Park B1 (Pabedan)",
+  "Taw Win Centre — Level 6, Reception (Bahan)",
+  "Times City — Level 2, Open Floor (Kamaryut)",
+  "Sule Square — Level 5, Server Room (Kyauktada)",
+];
+const CLIENTS = ["Ma Aye Thida", "Daw Khin Myo Aye", "Ma Thant Sin"];
 const CATEGORY_MAP: Record<string, string[]> = {
   HVAC: ["Not Cooling", "Not Heating", "Strange Noise", "Water Leak", "Filter Change", "Other"],
   Plumbing: ["Low Water Pressure", "Pipe Leak", "Blocked Drain", "No Hot Water", "Burst Pipe", "Other"],

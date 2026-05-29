@@ -164,6 +164,9 @@ const Field = ({ label, children }: { label: string; children: ReactNode }) => (
 
 const inputCls = "h-12 w-full rounded-lg px-3.5 text-[14px] outline-none transition focus:bg-white";
 const inputStyle: CSSProperties = { background: C.sLow, border: `1px solid ${C.outlineVar}`, color: C.onSurface };
+const scrollAreaStyle: CSSProperties = { WebkitOverflowScrolling: "touch", overscrollBehaviorY: "contain", touchAction: "pan-y" };
+const detailContentStyle: CSSProperties = { paddingBottom: "calc(9rem + env(safe-area-inset-bottom))" };
+const actionDetailContentStyle: CSSProperties = { paddingBottom: "calc(12rem + env(safe-area-inset-bottom))" };
 
 const Input = (p: React.InputHTMLAttributes<HTMLInputElement>) => <input {...p} className={inputCls} style={inputStyle} />;
 const TextArea = (p: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => <textarea {...p} className="w-full rounded-lg p-3 text-[14px] outline-none focus:bg-white" style={{ ...inputStyle, minHeight: 96 }} />;
@@ -415,9 +418,9 @@ function AdminJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: ()
   const [note, setNote] = useState("");
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full overflow-y-auto" style={scrollAreaStyle}>
       <TopBar title="Job Detail" onBack={onBack} />
-      <div className="space-y-3 px-4 pb-6">
+      <div className="space-y-3 px-4" style={detailContentStyle}>
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
           <div className="text-[11px] font-semibold tracking-wide" style={{ color: C.outline }}>#{job.order}</div>
           <h2 className="mt-1 text-[22px] font-bold leading-tight" style={{ color: C.onSurface }}>{job.title}</h2>
@@ -531,9 +534,9 @@ function TechJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: () 
   const [pre, setPre] = useState(true);
   const [post, setPost] = useState(false);
   return (
-    <div className="h-full overflow-y-auto pb-24">
+    <div className="h-full overflow-y-auto" style={scrollAreaStyle}>
       <TopBar title={`#${job.order}`} onBack={onBack} />
-      <div className="space-y-3 px-4">
+      <div className="space-y-3 px-4" style={actionDetailContentStyle}>
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
           <h2 className="text-[20px] font-bold leading-tight" style={{ color: C.onSurface }}>{job.title}</h2>
           <div className="mt-2 flex gap-2"><PriorityBadge p={job.priority} /><StatusBadge status={job.status} /></div>
@@ -607,9 +610,9 @@ function ClientRequestDetailScreen({ job, onBack }: { job: Job; onBack: () => vo
   const currentIdx = order.indexOf(job.status);
   const labels = ["Submitted", "Acknowledged", "In Progress", "Completed", "Verified"];
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full overflow-y-auto" style={scrollAreaStyle}>
       <TopBar title="Request Detail" onBack={onBack} />
-      <div className="space-y-3 px-4 pb-6">
+      <div className="space-y-3 px-4" style={detailContentStyle}>
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
           <div className="text-[11px] font-semibold tracking-wide" style={{ color: C.outline }}>#{job.order}</div>
           <h2 className="mt-1 text-[22px] font-bold leading-tight" style={{ color: C.onSurface }}>{job.title}</h2>

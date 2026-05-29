@@ -418,9 +418,9 @@ function AdminJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: ()
   const [note, setNote] = useState("");
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full overflow-y-auto" style={scrollAreaStyle}>
       <TopBar title="Job Detail" onBack={onBack} />
-      <div className="space-y-3 px-4 pb-6">
+      <div className="space-y-3 px-4" style={detailContentStyle}>
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
           <div className="text-[11px] font-semibold tracking-wide" style={{ color: C.outline }}>#{job.order}</div>
           <h2 className="mt-1 text-[22px] font-bold leading-tight" style={{ color: C.onSurface }}>{job.title}</h2>
@@ -534,9 +534,9 @@ function TechJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: () 
   const [pre, setPre] = useState(true);
   const [post, setPost] = useState(false);
   return (
-    <div className="h-full overflow-y-auto pb-24">
+    <div className="h-full overflow-y-auto" style={scrollAreaStyle}>
       <TopBar title={`#${job.order}`} onBack={onBack} />
-      <div className="space-y-3 px-4">
+      <div className="space-y-3 px-4" style={actionDetailContentStyle}>
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
           <h2 className="text-[20px] font-bold leading-tight" style={{ color: C.onSurface }}>{job.title}</h2>
           <div className="mt-2 flex gap-2"><PriorityBadge p={job.priority} /><StatusBadge status={job.status} /></div>
@@ -610,9 +610,9 @@ function ClientRequestDetailScreen({ job, onBack }: { job: Job; onBack: () => vo
   const currentIdx = order.indexOf(job.status);
   const labels = ["Submitted", "Acknowledged", "In Progress", "Completed", "Verified"];
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full overflow-y-auto" style={scrollAreaStyle}>
       <TopBar title="Request Detail" onBack={onBack} />
-      <div className="space-y-3 px-4 pb-6">
+      <div className="space-y-3 px-4" style={detailContentStyle}>
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
           <div className="text-[11px] font-semibold tracking-wide" style={{ color: C.outline }}>#{job.order}</div>
           <h2 className="mt-1 text-[22px] font-bold leading-tight" style={{ color: C.onSurface }}>{job.title}</h2>

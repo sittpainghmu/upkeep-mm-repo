@@ -164,6 +164,9 @@ const Field = ({ label, children }: { label: string; children: ReactNode }) => (
 
 const inputCls = "h-12 w-full rounded-lg px-3.5 text-[14px] outline-none transition focus:bg-white";
 const inputStyle: CSSProperties = { background: C.sLow, border: `1px solid ${C.outlineVar}`, color: C.onSurface };
+const scrollAreaStyle: CSSProperties = { WebkitOverflowScrolling: "touch", overscrollBehaviorY: "contain", touchAction: "pan-y" };
+const detailContentStyle: CSSProperties = { paddingBottom: "calc(9rem + env(safe-area-inset-bottom))" };
+const actionDetailContentStyle: CSSProperties = { paddingBottom: "calc(12rem + env(safe-area-inset-bottom))" };
 
 const Input = (p: React.InputHTMLAttributes<HTMLInputElement>) => <input {...p} className={inputCls} style={inputStyle} />;
 const TextArea = (p: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => <textarea {...p} className="w-full rounded-lg p-3 text-[14px] outline-none focus:bg-white" style={{ ...inputStyle, minHeight: 96 }} />;

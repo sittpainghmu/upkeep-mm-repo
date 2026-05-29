@@ -415,7 +415,7 @@ function AdminJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: ()
   const [note, setNote] = useState("");
 
   return (
-    <div>
+    <div className="h-full overflow-y-auto">
       <TopBar title="Job Detail" onBack={onBack} />
       <div className="space-y-3 px-4 pb-6">
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
@@ -531,7 +531,7 @@ function TechJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: () 
   const [pre, setPre] = useState(true);
   const [post, setPost] = useState(false);
   return (
-    <div className="pb-24">
+    <div className="h-full overflow-y-auto pb-24">
       <TopBar title={`#${job.order}`} onBack={onBack} />
       <div className="space-y-3 px-4">
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
@@ -569,7 +569,7 @@ function TechJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: () 
           <div className="flex gap-2">{[1, 2, 3].map((i) => <div key={i} className="h-16 w-16 rounded-lg" style={{ background: `linear-gradient(135deg, ${C.primaryFixed}, ${C.sHigh})` }} />)}</div>
         </div>
       </div>
-      <div className="absolute bottom-[68px] left-0 right-0 px-4 py-3" style={{ background: C.bg, borderTop: `1px solid ${C.outlineVar}` }}>
+      <div className="absolute bottom-0 left-0 right-0 px-4 py-3" style={{ background: C.bg, borderTop: `1px solid ${C.outlineVar}`, paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
         <PrimaryButton icon="check_circle" onClick={() => { showToast("Marked as done"); onBack(); }}>Mark as Done</PrimaryButton>
       </div>
     </div>
@@ -607,7 +607,7 @@ function ClientRequestDetailScreen({ job, onBack }: { job: Job; onBack: () => vo
   const currentIdx = order.indexOf(job.status);
   const labels = ["Submitted", "Acknowledged", "In Progress", "Completed", "Verified"];
   return (
-    <div>
+    <div className="h-full overflow-y-auto">
       <TopBar title="Request Detail" onBack={onBack} />
       <div className="space-y-3 px-4 pb-6">
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>

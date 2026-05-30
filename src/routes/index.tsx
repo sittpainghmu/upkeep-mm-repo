@@ -433,8 +433,6 @@ function AdminJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: ()
         <InfoCard rows={[
           ["Category", `${job.category[0]} → ${job.category[1]}`],
           ["Location", `${job.location} · ${job.floor}`],
-          ...(job.asset ? [["Asset", job.asset] as [string, string]] : []),
-          ["Vendor", job.vendor ?? "Not assigned"],
           ["Reporter", `${job.reporter} (${job.reporterType})`],
         ]} />
 
@@ -446,7 +444,7 @@ function AdminJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: ()
             </div>
             <Field label="New status">
               <Select value={newStatus} onChange={(e) => setNewStatus(e.target.value as Status)}>
-                {(["open", "acknowledged", "in_progress", "completed", "verified", "cancelled"] as Status[]).map((s) => <option key={s} value={s}>{s.replace("_", " ")}</option>)}
+                {["assigned", "completed"].map((s) => <option key={s} value={s}>{s}</option>)}
               </Select>
             </Field>
             <Field label="Note"><TextArea rows={3} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Add a note for the log…" /></Field>
@@ -457,7 +455,6 @@ function AdminJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: ()
         <Collapsible open={assignOpen} onToggle={() => setAssignOpen(!assignOpen)} title="Assign Technician" icon="engineering">
           <div className="space-y-3">
             <Field label="Technician"><Select>{TECHNICIANS.map((t) => <option key={t}>{t}</option>)}</Select></Field>
-            <Field label="Vendor"><Select>{VENDORS.map((v) => <option key={v}>{v}</option>)}</Select></Field>
             <PrimaryButton onClick={() => showToast("Assignment saved")}>Save Assignment</PrimaryButton>
           </div>
         </Collapsible>
@@ -495,10 +492,8 @@ function AdminSubmitScreen({ onDone }: { onDone: () => void }) {
         <Field label="Client"><Select>{CLIENTS.map((c) => <option key={c}>{c}</option>)}</Select></Field>
         <Field label="Issue Title"><Input placeholder="e.g. AC not cooling" /></Field>
         <Field label="Location"><Select>{LOCATIONS.map((l) => <option key={l}>{l}</option>)}</Select></Field>
-        <Field label="Asset (optional)"><Select><option>—</option><option>AHU-04B</option><option>Pump-12</option></Select></Field>
         <Field label="Priority"><SegmentedToggle options={["normal", "urgent"] as Priority[]} value={priority} onChange={setPriority} /></Field>
         <Field label="Category"><Select value={cat} onChange={(e) => setCat(e.target.value)}>{Object.keys(CATEGORY_MAP).map((k) => <option key={k}>{k}</option>)}</Select></Field>
-        <Field label="Sub-category"><Select>{CATEGORY_MAP[cat].map((s) => <option key={s}>{s}</option>)}</Select></Field>
         <Field label="Description"><TextArea rows={4} placeholder="Describe the issue…" /></Field>
         <Field label="Attachments">
           <SecondaryButton icon="add_photo_alternate">Add Photos</SecondaryButton>
@@ -546,7 +541,6 @@ function TechJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: () 
         <InfoCard rows={[
           ["Category", `${job.category[0]} → ${job.category[1]}`],
           ["Location", `${job.location} · ${job.floor}`],
-          ["Asset", job.asset ?? "—"],
           ["Description", job.description],
         ]} />
 
@@ -644,7 +638,7 @@ function ClientRequestDetailScreen({ job, onBack }: { job: Job; onBack: () => vo
             <div className="mb-2 text-[12px] font-semibold uppercase tracking-wide" style={{ color: C.onSurfaceVar }}>Assigned Technician</div>
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: C.primaryFixed }}><Icon n="engineering" size={20} color={C.onPrimaryFixed} /></div>
-              <div><div className="text-[14px] font-semibold" style={{ color: C.onSurface }}>{TECHNICIANS[0]}</div><div className="text-[12px]" style={{ color: C.onSurfaceVar }}>Technician · {job.vendor}</div></div>
+              <div><div className="text-[14px] font-semibold" style={{ color: C.onSurface }}>{TECHNICIANS[0]}</div><div className="text-[12px]" style={{ color: C.onSurfaceVar }}>Technician</div></div>
             </div>
           </div>
         )}
@@ -671,7 +665,6 @@ function ClientNewRequestScreen({ onDone }: { onDone: () => void }) {
         <Field label="Location"><Select>{LOCATIONS.map((l) => <option key={l}>{l}</option>)}</Select></Field>
         <Field label="Priority"><SegmentedToggle options={["normal", "urgent"] as Priority[]} value={priority} onChange={setPriority} /></Field>
         <Field label="Category"><Select value={cat} onChange={(e) => setCat(e.target.value)}>{Object.keys(CATEGORY_MAP).map((k) => <option key={k}>{k}</option>)}</Select></Field>
-        <Field label="Sub-category"><Select>{CATEGORY_MAP[cat].map((s) => <option key={s}>{s}</option>)}</Select></Field>
         <Field label="Description"><TextArea rows={4} placeholder="Describe the issue…" /></Field>
         <Field label="Attachments"><SecondaryButton icon="add_photo_alternate">Add Photos</SecondaryButton></Field>
         <div className="pt-2"><PrimaryButton icon="send" onClick={onDone}>Submit Request</PrimaryButton></div>

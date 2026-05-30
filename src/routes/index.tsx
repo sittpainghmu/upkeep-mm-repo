@@ -464,8 +464,7 @@ function AdminJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: ()
           <TimelineStep status="done" label="Submitted" time="Today 09:14" note={`by ${job.reporter}`} />
           <TimelineStep status="done" label="Acknowledged" time="Today 09:22" note="by Admin" />
           <TimelineStep status="current" label="In Progress" time="Today 09:48" note={`Tech assigned: ${TECHNICIANS[0]}`} />
-          <TimelineStep status="pending" label="Completed" />
-          <TimelineStep status="pending" label="Verified" last />
+          <TimelineStep status="pending" label="Completed" last />
         </div>
 
         <div className="rounded-2xl bg-white p-4" style={{ border: `1px solid ${C.outlineVar}` }}>
@@ -525,7 +524,7 @@ function TechJobsScreen({ onJob }: { onJob: (id: string) => void }) {
 }
 
 function TechJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: () => void; showToast: (m: string) => void }) {
-  const [step, setStep] = useState<"acknowledged" | "in_progress" | "completed">("in_progress");
+  const [step, setStep] = useState<"in_progress" | "completed">("in_progress");
   const [pre, setPre] = useState(true);
   const [post, setPost] = useState(false);
   return (
@@ -546,7 +545,7 @@ function TechJobDetailScreen({ job, onBack, showToast }: { job: Job; onBack: () 
 
         <div className="rounded-2xl bg-white p-4 space-y-3" style={{ border: `1px solid ${C.outlineVar}` }}>
           <div className="text-[12px] font-semibold uppercase tracking-wide" style={{ color: C.onSurfaceVar }}>Update Status</div>
-          <SegmentedToggle options={["acknowledged", "in_progress", "completed"] as const} value={step} onChange={setStep} />
+          <SegmentedToggle options={["in_progress", "completed"] as const} value={step} onChange={setStep} />
           <TextArea rows={3} placeholder="Add a note…" />
           <PrimaryButton onClick={() => showToast("Status updated")}>Update Status</PrimaryButton>
         </div>
